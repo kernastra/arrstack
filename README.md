@@ -33,7 +33,7 @@ dsudo apt update && sudo apt install -y nvidia-container-toolkit
 sudo systemctl restart docker
 ```
 
-2. Storage Pool
+### 2. Storage Pool
 Ensure your ZFS or storage pool is imported and mounted to a directory (e.g., /mnt/data).
 
 
