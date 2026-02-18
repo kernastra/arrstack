@@ -41,7 +41,7 @@ Ensure your ZFS or storage pool is imported and mounted to a directory (e.g., /m
 
 Run the following one-liner to download and execute the interactive setup script:
 ```bash
-def sudo su -c "wget https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/ubuntu-media-setup.sh && chmod +x ubuntu-media-setup.sh && bash ubuntu-media-setup.sh"
+def sudo su -c "wget https://raw.githubusercontent.com/kernastra/arrstack/main/ubuntu-media-setup.sh && chmod +x ubuntu-media-setup.sh && bash ubuntu-media-setup.sh"
 ```
 What the script will ask for:
 - **Base Path:** The full path to your mount point (e.g., /mnt/data).
