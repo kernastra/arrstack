@@ -64,7 +64,7 @@ The script creates a unified structure to enable Atomic Moves:
 🐳 Post-Installation
 Once the script finishes, navigate to your docker directory and start the stack:
 ```bash
-dcd /mnt/data/docker
+cd /mnt/data/docker
 docker compose up -d
 ```
 Dashboard Access:
