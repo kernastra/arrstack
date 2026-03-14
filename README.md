@@ -33,9 +33,100 @@ dsudo apt update && sudo apt install -y nvidia-container-toolkit
 sudo systemctl restart docker
 ```
 
-### 2. Storage Pool
-Ensure your ZFS or storage pool is imported and mounted to a directory (e.g., /mnt/data).
+### 2. Storage Pool — Finding Your External Drive
 
+When the script asks for your storage path, you need to know where Ubuntu has mounted your drive. Here's how to find it:
+
+**Step 1 — Plug in your external drive**, then open a terminal and run:
+```bash
+lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINT,LABEL
+```
+
+You'll see output like this:
+```
+NAME   SIZE  FSTYPE  MOUNTPOINT        LABEL
+sda    8G
+└─sda1 8G    ext4    /mnt/mydata       MyDrive
+sdb    2T    ntfs    /media/john/Data  WD_BLACK
+```
+
+Look for your drive by its **SIZE** or **LABEL**. The **MOUNTPOINT** column is the path you'll enter into the script.
+
+> **Not mounted yet?** If the MOUNTPOINT column is blank, Ubuntu hasn't mounted the drive automatically. Run this to mount it manually (replace `sdb1` and the path with your own):
+> ```bash
+> sudo mkdir -p /mnt/data
+> sudo mount /dev/sdb1 /mnt/data
+> ```
+
+**Step 2 — Enter that path when the script asks:**
+```
+Enter the full path to your Data/Media pool: /mnt/data
+```
+Just type the mountpoint path exactly as shown in `lsblk` and press Enter.
+
+> **Tip:** If you want the drive to mount automatically every time you reboot, see the [ZFS Pool Not Mounting on Reboot](#4-zfs-pool-not-mounting-on-reboot) section below, or look into adding an entry to `/etc/fstab` for non-ZFS drives.
+
+
+## 🔒 VPN Setup — Which VPN to Use & Getting Your Config File
+
+The script uses **WireGuard** to route all downloads through a VPN. Not all VPNs support WireGuard or allow the port forwarding needed for qBittorrent to work well. The ones below are tested and known to work.
+
+---
+
+### Recommended VPN Providers
+
+| Provider | WireGuard | Port Forwarding | Notes |
+|---|---|---|---|
+| **AirVPN** | ✅ | ✅ | Best overall for torrenting. Generates WireGuard configs directly. |
+| **Mullvad** | ✅ | ✅ (limited) | Privacy-focused, no account email required. |
+| **ProtonVPN** | ✅ | ✅ (paid plans) | Familiar brand, easy config generator. |
+
+> **Avoid** VPNs that don't support WireGuard or port forwarding (NordVPN, ExpressVPN, Surfshark) — they will not work correctly with this setup.
+
+---
+
+### How to Get Your WireGuard Config File
+
+#### AirVPN (Recommended)
+1. Log in at **airvpn.org** and go to **Client Area → Config Generator**
+2. Select **Linux** as the OS
+3. Select **WireGuard** as the protocol
+4. Choose a server (pick one close to you geographically)
+5. Click **Generate** — a `.conf` file will download to your computer
+6. Copy that file to your Ubuntu server, or have it ready to paste during setup
+
+#### Mullvad
+1. Log in at **mullvad.net** and go to **Account → WireGuard configuration**
+2. Click **Generate key**, then select a server location
+3. Click **Download file** — a `.conf` file will download
+4. Copy it to your Ubuntu server or paste its contents during setup
+
+#### ProtonVPN
+1. Log in at **protonvpn.com** and go to **Downloads → WireGuard configuration**
+2. Select a server and click **Create**
+3. Download the `.conf` file
+4. Copy it to your Ubuntu server or paste its contents during setup
+
+---
+
+### Transferring the Config File to Your Server
+
+If you downloaded the `.conf` file on another computer (e.g. your Windows/Mac laptop), copy it to your Ubuntu server using one of these methods:
+
+**Option A — USB drive:** Copy the file to a USB stick, plug it into the server, then find it with:
+```bash
+lsblk  # find the USB mountpoint
+ls /media/$USER/  # or look here
+```
+
+**Option B — SCP from your laptop** (replace values with your own):
+```bash
+scp ~/Downloads/wg0.conf youruser@192.168.1.100:/home/youruser/wg0.conf
+```
+
+**Option C — Paste directly into the script:** When the script asks about VPN setup, choose option 1 to paste the config text. Open the `.conf` file in a text editor, select all, copy, then paste it into the terminal.
+
+---
 
 🚀 Installation
 
