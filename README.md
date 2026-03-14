@@ -64,7 +64,8 @@ Enter the full path to your Data/Media pool: /mnt/data
 ```
 Just type the mountpoint path exactly as shown in `lsblk` and press Enter.
 
-> **Tip:** If you want the drive to mount automatically every time you reboot, see the [ZFS Pool Not Mounting on Reboot](#4-zfs-pool-not-mounting-on-reboot) section below, or look into adding an entry to `/etc/fstab` for non-ZFS drives.
+> [!TIP] 
+> If you want the drive to mount automatically every time you reboot, see the [ZFS Pool Not Mounting on Reboot](#4-zfs-pool-not-mounting-on-reboot) section below, or look into adding an entry to `/etc/fstab` for non-ZFS drives.
 
 
 ## 🔒 VPN Setup — Which VPN to Use & Getting Your Config File
