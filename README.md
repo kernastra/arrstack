@@ -1,6 +1,7 @@
-# 🚀 Ubuntu Media Server Automator
+![Media Server Banner](img.png)
 
-An interactive bash script designed to build a high-performance, atomic-move-ready media stack on Ubuntu Server. This project is heavily inspired by the [Servers@Home](https://github.com/serversathome) workflow and follows the [TRaSH Guides](https://trash-guides.info/) standards for hardlinking and data efficiency.
+
+### An interactive bash script designed to build a high-performance, atomic-move-ready media stack on Ubuntu Server. This project is heavily inspired by the [Servers@Home](https://github.com/serversathome) workflow and follows the [TRaSH Guides](https://trash-guides.info/) standards for hardlinking and data efficiency.
 
 ---
 
