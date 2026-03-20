@@ -134,7 +134,7 @@ scp ~/Downloads/wg0.conf youruser@192.168.1.100:/home/youruser/wg0.conf
 
 Run the following one-liner to download and execute the interactive setup script:
 ```bash
-def sudo su -c "wget https://raw.githubusercontent.com/kernastra/arrstack/main/ubuntu-media-setup.sh && chmod +x ubuntu-media-setup.sh && bash ubuntu-media-setup.sh"
+sudo su -c "wget https://raw.githubusercontent.com/kernastra/arrstack/main/ubuntu-media-setup.sh && chmod +x ubuntu-media-setup.sh && bash ubuntu-media-setup.sh"
 ```
 What the script will ask for:
 - **Base Path:** The full path to your mount point (e.g., /mnt/data).
